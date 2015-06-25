@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_menu_titles">
+        <item>@string/menu.titles.home</item>
+        <item>@string/menu.titles.adjust</item>
+        <item>@string/menu.titles.vacation</item>
+        <item>@string/menu.titles.plans</item>
+        <item>@string/menu.titles.statistics</item>
+        <item>@string/menu.titles.policy</item>
+        <item>@string/menu.titles.settings</item>
+    </string-array>
+</resources>
