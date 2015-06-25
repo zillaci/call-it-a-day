@@ -1,11 +1,11 @@
 package com.pivotal_er.ciad.callitaday;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] mMenuTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         mMenuTitles = getResources().getStringArray(R.array.array_menu_titles);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mMenuTitles));
+//        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+//        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mMenuTitles));
     }
 
     @Override

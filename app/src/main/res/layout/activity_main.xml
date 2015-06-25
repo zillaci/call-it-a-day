@@ -17,15 +17,10 @@
             android:layout_gravity="center"
             android:src="@drawable/duk" />
     </FrameLayout>
-
-    <ListView
-        android:id="@+id/left_drawer"
+    <fragment android:name="com.pivotal_er.ciad.callitaday.fragments.LeftDrawerFragment"
+        android:id="@+id/left_drawer_fragment"
         android:layout_width="240dp"
-        android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#111" />
+        android:layout_height="match_parent" />
 
 </android.support.v4.widget.DrawerLayout>
