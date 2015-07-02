@@ -1,26 +1,33 @@
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <!-- content view -->
-    <FrameLayout
-        android:id="@+id/content_frame"
+    <include layout="@layout/toolbar"/>
+
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:layout_gravity="center"
-            android:src="@drawable/duk" />
-    </FrameLayout>
-    <fragment android:name="com.pivotal_er.ciad.callitaday.fragments.LeftDrawerFragment"
-        android:id="@+id/left_drawer_fragment"
-        android:layout_width="240dp"
-        android:layout_gravity="start"
-        android:layout_height="match_parent" />
+        <!-- content view -->
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</android.support.v4.widget.DrawerLayout>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:layout_gravity="center"
+                android:src="@drawable/duk" />
+        </FrameLayout>
+        <fragment android:name="com.pivotal_er.ciad.callitaday.fragments.LeftDrawerFragment"
+            android:id="@+id/left_drawer_fragment"
+            android:layout_width="240dp"
+            android:layout_gravity="start"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

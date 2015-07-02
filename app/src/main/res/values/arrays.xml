@@ -9,4 +9,13 @@
         <item>@string/menu.titles.policy</item>
         <item>@string/menu.titles.settings</item>
     </string-array>
+    <array name="array_menu_icons">
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_adjust</item>
+        <item>@drawable/ic_vacation</item>
+        <item>@drawable/ic_plans</item>
+        <item>@drawable/ic_statistics</item>
+        <item>@drawable/ic_policy</item>
+        <item>@drawable/ic_settings</item>
+    </array>
 </resources>
