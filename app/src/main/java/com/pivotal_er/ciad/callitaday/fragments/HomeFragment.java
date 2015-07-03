@@ -29,8 +29,12 @@ public class HomeFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.launcher_grid_view);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mRecyclerView.setAdapter(new ImageAdapter(getActivity(), mLauncherIcons));
+
+        mRecyclerViewAdapter = new ImageAdapter(getActivity(), mLauncherIcons);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+
+        mRecyclerViewLayoutManager = new GridLayoutManager(getActivity(), 3);
+        mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
 
         return view;
     }
