@@ -2,6 +2,7 @@ package com.pivotal_er.ciad.callitaday.fragments;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,11 +12,12 @@ import android.view.ViewGroup;
 import com.pivotal_er.ciad.callitaday.R;
 import com.pivotal_er.ciad.callitaday.navigationdrawer.LeftDrawerAdapter;
 
-public class LeftDrawerFragment extends android.app.Fragment {
+public class LeftDrawerFragment extends Fragment {
 
     private RecyclerView mMenuRecyclerView;
     private RecyclerView.Adapter mMenuRecyclerViewAdapter;
     private RecyclerView.LayoutManager mMenuRecyclerLayoutManager;
+
     private String[] mMenuTitles;
     private TypedArray mMenuIcons;
 
@@ -29,6 +31,7 @@ public class LeftDrawerFragment extends android.app.Fragment {
     public void setup() {
         mMenuRecyclerView = (RecyclerView) getActivity().findViewById(R.id.left_drawer);
         mMenuRecyclerView.setHasFixedSize(true);
+
         mMenuTitles = getResources().getStringArray(R.array.array_menu_titles);
         mMenuIcons = getResources().obtainTypedArray(R.array.array_menu_icons);
 

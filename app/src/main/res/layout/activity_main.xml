@@ -15,13 +15,6 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
-                android:layout_gravity="center"
-                android:src="@drawable/duk" />
         </FrameLayout>
         <fragment android:name="com.pivotal_er.ciad.callitaday.fragments.LeftDrawerFragment"
             android:id="@+id/left_drawer_fragment"
