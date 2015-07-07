@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pivotal_er.ciad.callitaday.MainActivity;
 import com.pivotal_er.ciad.callitaday.R;
 
 /**
@@ -19,18 +18,23 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.Vi
 
     private String[] mTextTitles;
     private TypedArray mIcons;
+    private OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
 
     public LeftDrawerAdapter(String[] titles, TypedArray icons) {
         mTextTitles = titles;
         mIcons = icons;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTextView;
         private ImageView mIconView;
         private Context mContext;
-        
+
         public ViewHolder(View itemView, Context context) {
             super(itemView);
             mContext = context;
@@ -44,8 +48,9 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.Vi
 
         @Override
         public void onClick(View v) {
-            MainActivity activity = (MainActivity) mContext;
-            activity.replaceContent(getAdapterPosition());
+            if(mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 
@@ -68,5 +73,8 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.Vi
         return mTextTitles.length;
     }
 
+    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
 
 }

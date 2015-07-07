@@ -1,15 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffffff">
+    android:background="#ffffffff"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:orientation="vertical"
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageButton
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:id="@+id/imageButton2"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView" />
+
+            <TextClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textClock" />
+        </TableRow>
+    </TableLayout>
+
+    <ImageButton
+        android:layout_width="229dp"
+        android:layout_height="198dp"
+        android:id="@+id/btn_work"
         android:layout_gravity="center"
-        android:src="@drawable/balless"
-        android:scaleType="fitXY" />
-</FrameLayout>
+        android:src="@drawable/work"
+        android:scaleType="fitXY"
+        style="@style/Base.Widget.AppCompat.Button" />
+    <TextClock
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:format12Hour="h:mm a"
+        android:textColor="#ff3a4bff"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textStyle="bold|italic"
+        android:fontFamily="sans-serif"
+        android:gravity="center|center_vertical|center_horizontal" />
+
+</LinearLayout>

@@ -12,12 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.pivotal_er.ciad.callitaday.enums.FragmentPage;
 import com.pivotal_er.ciad.callitaday.fragments.AdjustFragment;
 import com.pivotal_er.ciad.callitaday.fragments.HomeFragment;
 import com.pivotal_er.ciad.callitaday.fragments.LeftDrawerFragment;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements HomeFragment.OnLauncherItemSelectedListener,
+                    LeftDrawerFragment.OnLeftDrawerClickListener {
 
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mLeftDrawerFragment = (LeftDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer_fragment);
         mLeftDrawerFragment.setup();
 
-        replaceContent(0);
+        replaceContent(FragmentPage.HOME);
     }
 
     @Override
@@ -87,26 +89,26 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    public void replaceContent(int position) {
+    public void replaceContent(FragmentPage page) {
         Fragment fragment = null;
 
 
-        switch (position) {
-            case 0: //home
+        switch (page) {
+            case HOME: //home
                 fragment = HomeFragment.newInstance();
                 break;
-            case 1: //adjust
+            case ADJUST: //adjust
                 fragment = AdjustFragment.newInstance();
                 break;
-            case 2: //vacation
+            case VACATION: //vacation
                 break;
-            case 3: //plans
+            case PLANS: //plans
                 break;
-            case 4: //statistics
+            case STATISTICS: //statistics
                 break;
-            case 5: //policy
+            case POLICY: //policy
                 break;
-            case 6: //settings
+            case SETTINGS: //settings
                 break;
 
         }
@@ -121,5 +123,15 @@ public class MainActivity extends AppCompatActivity {
             ((DrawerLayout)findViewById(R.id.drawer_layout)).closeDrawers();
 
         }
+    }
+
+    @Override
+    public void onLauncerItemSelected(FragmentPage page) {
+        replaceContent(page);
+    }
+
+    @Override
+    public void onLeftDrawerClick(FragmentPage page) {
+        replaceContent(page);
     }
 }
