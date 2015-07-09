@@ -19,11 +19,11 @@
         <item>@drawable/ic_settings</item>
     </array>
     <array name="array_home_icons">
-        <item>@drawable/ico_home</item>
-        <item>@drawable/ico_adjust</item>
-        <item>@drawable/ico_vacation</item>
-        <item>@drawable/ico_stats</item>
-        <item>@drawable/ico_policy</item>
-        <item>@drawable/ico_settings</item>
+        <item>@drawable/ico_home_white</item>
+        <item>@drawable/ico_adjust_white</item>
+        <item>@drawable/ico_vacation_white</item>
+        <item>@drawable/ico_stats_white</item>
+        <item>@drawable/ico_policy_white</item>
+        <item>@drawable/ico_settings_white</item>
     </array>
 </resources>

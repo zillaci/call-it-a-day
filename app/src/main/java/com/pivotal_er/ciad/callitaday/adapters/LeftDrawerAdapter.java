@@ -1,4 +1,4 @@
-package com.pivotal_er.ciad.callitaday.navigationdrawer;
+package com.pivotal_er.ciad.callitaday.adapters;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import com.pivotal_er.ciad.callitaday.R;
 
-/**
- * Created by sds on 2015-06-29.
- */
 public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.ViewHolder> {
 
     private String[] mTextTitles;
@@ -21,7 +18,7 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.Vi
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
     }
 
     public LeftDrawerAdapter(String[] titles, TypedArray icons) {
@@ -57,9 +54,7 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerAdapter.Vi
     @Override
     public LeftDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_list_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view, parent.getContext());
-
-        return viewHolder;
+        return new ViewHolder(view, parent.getContext());
     }
 
     @Override

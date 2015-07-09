@@ -42,13 +42,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                makeToastMsg("opened");
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                makeToastMsg("closed");
             }
         };
         //set true toggle animation hamberger to arrow
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLauncerItemSelected(FragmentPage page) {
+    public void onLauncherItemSelected(FragmentPage page) {
         replaceContent(page);
     }
 

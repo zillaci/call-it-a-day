@@ -7,20 +7,97 @@
     android:orientation="vertical"
     android:baselineAligned="false"
     tool:context="com.pivotal_er.ciad.callitaday.fragments.HomeFragment">
+    <!-- Title of the app -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="Let's \n Call it a day!!!"
-        android:textColor="#ff2729ff"
-        android:autoText="false"
+        android:layout_height="wrap_content"
+        android:text="@string/home.main.text"
+        android:textColor="#000000"
         android:textStyle="bold"
-        android:textSize="50dp"
+        android:textSize="30sp"
         android:textAlignment="center"
+        android:fontFamily="monospace"
         android:padding="20dp" />
 
+    <!-- first tab time, last tab time, time interval -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/image_view_work_text" />
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:text=""
+                    android:id="@+id/text_view_work_time_record"
+                    android:textColor="#000000" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/image_view_callit_text"/>
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:text=""
+                    android:id="@+id/text_view_callit_time_record"
+                    android:textColor="#000000" />
+            </TableRow>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="1h 30m"
+            android:id="@+id/text_view_work_time_amount"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/image_button_change_stat"
+        android:layout_gravity="center"
+        android:src="@drawable/work"
+        android:scaleType="fitXY"/>
+    <TextClock
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:format12Hour="h:mm a"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp" />
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/launcher_grid_view" />
 
 </LinearLayout>

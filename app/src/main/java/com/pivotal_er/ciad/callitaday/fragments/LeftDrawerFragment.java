@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.pivotal_er.ciad.callitaday.R;
 import com.pivotal_er.ciad.callitaday.enums.FragmentPage;
-import com.pivotal_er.ciad.callitaday.navigationdrawer.LeftDrawerAdapter;
+import com.pivotal_er.ciad.callitaday.adapters.LeftDrawerAdapter;
 
 public class LeftDrawerFragment extends Fragment {
 
@@ -25,14 +25,12 @@ public class LeftDrawerFragment extends Fragment {
     private TypedArray mMenuIcons;
 
     public interface OnLeftDrawerClickListener {
-        public void onLeftDrawerClick(FragmentPage page);
+        void onLeftDrawerClick(FragmentPage page);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_left_drawer, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_left_drawer, container, false);
     }
 
     @Override
