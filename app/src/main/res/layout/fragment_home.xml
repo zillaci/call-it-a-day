@@ -6,7 +6,8 @@
     android:background="#ffffff"
     android:orientation="vertical"
     android:baselineAligned="false"
-    tool:context="com.pivotal_er.ciad.callitaday.fragments.HomeFragment">
+    tool:context="com.pivotal_er.ciad.callitaday.fragments.HomeFragment"
+    android:clickable="true">
     <!-- Title of the app -->
     <TextView
         android:layout_width="match_parent"
@@ -38,14 +39,16 @@
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/image_view_work_text" />
+                    android:id="@+id/image_view_work_text"
+                    android:src="@drawable/work_text" />
                 <TextView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:textSize="25sp"
-                    android:text=""
+                    android:text="9:00 오전"
                     android:id="@+id/text_view_work_time_record"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:autoText="false" />
 
             </TableRow>
 
@@ -55,12 +58,13 @@
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/image_view_callit_text"/>
+                    android:id="@+id/image_view_callit_text"
+                    android:src="@drawable/callit_text" />
                 <TextView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:textSize="25sp"
-                    android:text=""
+                    android:text="6:00 오후"
                     android:id="@+id/text_view_callit_time_record"
                     android:textColor="#000000" />
             </TableRow>
@@ -70,12 +74,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1h 30m"
+            android:text="-10h 30m"
             android:id="@+id/text_view_work_time_amount"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#000000"
-            android:textSize="50sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
     </LinearLayout>
 

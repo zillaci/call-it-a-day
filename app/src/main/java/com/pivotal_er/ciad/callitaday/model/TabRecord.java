@@ -18,6 +18,14 @@ public class TabRecord {
         this.timeMillis = timeMillis;
     }
 
+    public void setTimeMillis(Long timeMillis) {
+        this.timeMillis = timeMillis;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Long getTimeMillis() {
         return this.timeMillis;
     }

@@ -19,12 +19,11 @@ import com.pivotal_er.ciad.callitaday.R;
 import com.pivotal_er.ciad.callitaday.adapters.HomeImageAdapter;
 import com.pivotal_er.ciad.callitaday.database.DatabaseHelper;
 import com.pivotal_er.ciad.callitaday.enums.FragmentPage;
+import com.pivotal_er.ciad.callitaday.model.DaySummary;
 import com.pivotal_er.ciad.callitaday.model.TabRecord;
 import com.pivotal_er.ciad.callitaday.utils.CiadTimeUtil;
 
 import org.joda.time.DateTime;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -49,6 +48,7 @@ public class HomeFragment extends Fragment {
 
     private DatabaseHelper mDbHelper = null;
     private RuntimeExceptionDao<TabRecord, Long> mTabRecordDao = null;
+    private RuntimeExceptionDao<DaySummary, String> mDaySummaryDao = null;
 
     private HomeImageAdapter mRecyclerViewAdapter;
     private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
@@ -56,6 +56,14 @@ public class HomeFragment extends Fragment {
 
     public interface OnLauncherItemSelectedListener {
         void onLauncherItemSelected(FragmentPage page);
+    }
+
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -70,12 +78,13 @@ public class HomeFragment extends Fragment {
                 mListener.onLauncherItemSelected(FragmentPage.fromPosition(position));
             }
         });
-
         mRecyclerViewLayoutManager = new GridLayoutManager(getActivity(), 3);
 
         mDbHelper = OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
         mTabRecordDao = mDbHelper.getRuntimeExceptionDao(TabRecord.class);
+        mDaySummaryDao = mDbHelper.getRuntimeExceptionDao(DaySummary.class);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -91,8 +100,21 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 DateTime now = DateTime.now();
+                String date = now.toString(DATEFORMAT_YYYY_MM_DD);
 
-                mTabRecordDao.create(new TabRecord(CiadTimeUtil.formatDate(now, DATEFORMAT_YYYY_MM_DD), now.getMillis()));
+                mTabRecordDao.create(new TabRecord(date, now.getMillis()));
+
+                if(mWorkStat == WorkStat.OFF_WORK) {
+                    mDaySummaryDao.create(new DaySummary(date, now.getMillis(), 0, 0));
+                }
+                else {
+                    DaySummary daySummary = mDaySummaryDao.queryForId(date);
+                    daySummary.setEndMillis(now.getMillis());
+                    daySummary.setAmountMillis(CiadTimeUtil.calcWorkMillisWithBreak(
+                            now.getMillis() - daySummary.getStartMillis()));
+
+                    mDaySummaryDao.update(daySummary);
+                }
 
                 setTimeContents();
             }
@@ -135,10 +157,11 @@ public class HomeFragment extends Fragment {
     public void setTimeContents() {
         DateTime now = DateTime.now();
 
-        ArrayList<TabRecord> tabRecords =
-                (ArrayList<TabRecord>) mTabRecordDao.queryForEq("date", CiadTimeUtil.formatDate(now, DATEFORMAT_YYYY_MM_DD));
+        DaySummary daySummary = mDaySummaryDao.queryForId(now.toString(DATEFORMAT_YYYY_MM_DD));
 
-        if(tabRecords.isEmpty()) {
+        //No data today
+        if(daySummary == null) {
+            mWorkStat = WorkStat.OFF_WORK;
             mImgViewWorkText.setImageResource(-1);
             mTextViewWorkTimeRecord.setText("");
             mImgViewCallitText.setImageResource(-1);
@@ -147,19 +170,19 @@ public class HomeFragment extends Fragment {
             mTextViewWorkTimeAmount.setText("");
         }
         else {
+            mWorkStat = WorkStat.ON_WORK;
             mImgBtnChangeStat.setImageResource(R.drawable.callit);
             mImgViewWorkText.setImageResource(R.drawable.work_text);
 
-            DateTime firstTabTime = new DateTime(tabRecords.get(0).getTimeMillis());
+            DateTime workStartTime = new DateTime(daySummary.getStartMillis());
+            DateTime workEndTime = new DateTime(daySummary.getEndMillis());
 
-            mTextViewWorkTimeRecord.setText(CiadTimeUtil.formatDate(firstTabTime, DATEFORMAT_H_MM_A));
+            mTextViewWorkTimeRecord.setText(workStartTime.toString(DATEFORMAT_H_MM_A));
 
-            DateTime lastTabTime = new DateTime(tabRecords.get(tabRecords.size() - 1).getTimeMillis());
-
-            if(!lastTabTime.equals(firstTabTime)) {
+            if(daySummary.isValidWork()) {
                 mImgViewCallitText.setImageResource(R.drawable.callit_text);
-                mTextViewCallitTimeRecord.setText(CiadTimeUtil.formatDate(lastTabTime, DATEFORMAT_H_MM_A));
-                mTextViewWorkTimeAmount.setText(calcTimeAmount(firstTabTime.getMillis(), lastTabTime.getMillis()));
+                mTextViewCallitTimeRecord.setText(workEndTime.toString(DATEFORMAT_H_MM_A));
+                mTextViewWorkTimeAmount.setText(CiadTimeUtil.millisToHourAndMinute(daySummary.getAmountMillis()));
             }
             else {
                 mImgViewCallitText.setImageResource(-1);
@@ -167,23 +190,5 @@ public class HomeFragment extends Fragment {
                 mTextViewWorkTimeAmount.setText("");
             }
         }
-    }
-
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-    public String calcTimeAmount(long start, long end) {
-        long amount = end - start;
-
-        int hours = (int) ((amount / 1000) / 3600);
-        int minutes = (int) (((amount / 1000) % 3600) / 60);
-
-        return hours + "h " + minutes + "m";
     }
 }

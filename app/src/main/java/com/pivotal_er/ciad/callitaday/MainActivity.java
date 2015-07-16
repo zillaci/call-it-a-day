@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
     public void replaceContent(FragmentPage page) {
         Fragment fragment = null;
 
-
         switch (page) {
             case HOME: //home
                 fragment = HomeFragment.newInstance();
@@ -111,16 +110,10 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        if(fragment != null) {
-            Bundle args = new Bundle();
-            fragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.content_frame, fragment).addToBackStack(String.valueOf(page.getOrder())).commit();
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-            ((DrawerLayout)findViewById(R.id.drawer_layout)).closeDrawers();
-
-        }
+        ((DrawerLayout)findViewById(R.id.drawer_layout)).closeDrawers();
     }
 
     @Override

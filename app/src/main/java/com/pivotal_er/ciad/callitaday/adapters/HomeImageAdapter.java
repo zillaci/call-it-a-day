@@ -1,6 +1,5 @@
 package com.pivotal_er.ciad.callitaday.adapters;
 
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,16 +9,13 @@ import android.widget.ImageView;
 
 import com.pivotal_er.ciad.callitaday.R;
 
-/**
- * Created by sds on 2015-07-03.
- */
 public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.ViewHolder> {
 
     private TypedArray mImages;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
     }
 
     public HomeImageAdapter(TypedArray images) {
@@ -30,7 +26,7 @@ public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.View
 
         private ImageView mImageView;
 
-        public ViewHolder(View itemView, Context ctx) {
+        public ViewHolder(View itemView) {
             super(itemView);
 
             mImageView = (ImageView) itemView.findViewById(R.id.launcher_grid_item);
@@ -49,9 +45,7 @@ public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.View
     @Override
     public HomeImageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_grid_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view, parent.getContext());
-
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

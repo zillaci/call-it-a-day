@@ -26,4 +26,12 @@
         <item>@drawable/ico_policy_white</item>
         <item>@drawable/ico_settings_white</item>
     </array>
+    <array name="array_weekdays">
+        <item>@drawable/monday</item>
+        <item>@drawable/tuesday</item>
+        <item>@drawable/wednesday</item>
+        <item>@drawable/thursday</item>
+        <item>@drawable/friday</item>
+    </array>
+
 </resources>

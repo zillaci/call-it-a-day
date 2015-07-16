@@ -1,51 +1,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffffff"
     style="@style/Widget.AppCompat.Button.Borderless"
     android:orientation="vertical"
-    >
+    android:clickable="true">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:text="2015년 7월 2주차"
+        android:id="@+id/text_view_week_info"
+        android:textColor="#000000"
+        android:textSize="32sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView" />
-
-            <TextClock
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textClock" />
-        </TableRow>
-    </TableLayout>
-
-    <ImageButton
-        android:layout_width="229dp"
-        android:layout_height="198dp"
-        android:id="@+id/btn_work"
-        android:layout_gravity="center"
-        android:src="@drawable/work"
-        android:scaleType="fitXY"
-        style="@style/Base.Widget.AppCompat.Button" />
-    <TextClock
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:format12Hour="h:mm a"
-        android:textColor="#ff3a4bff"
-        android:textAlignment="center"
-        android:textSize="40dp"
-        android:textStyle="bold|italic"
-        android:fontFamily="sans-serif"
-        android:gravity="center|center_vertical|center_horizontal" />
+        android:layout_height="320dp"
+        android:id="@+id/recycler_view_weekdays"
+        android:layout_margin="3dp"
+        android:layout_gravity="center">
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/adjust.text.done"
+            android:id="@+id/text_label_done"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:gravity="right"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/text_view_total_work_time"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/adjust.text.togo"
+            android:id="@+id/text_label_togo"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/text_view_remain_work_time"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:layout_weight="2" />
+
+    </LinearLayout>
 
 </LinearLayout>
